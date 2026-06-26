@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>От endpoint к продукту: как читать API с продуктовой оптикой — AI for Devs</title><meta name="description" content="Восемь мысленных переходов на примере Runway — от Feature Label до Thesis. Урок: как перестать видеть список endpoints и начать видеть продукт."><!-- Open Graph --><meta property="og:title" content="От endpoint к продукту: как читать API с продуктовой оптикой — AI for Devs"><meta property="og:description" content="Восемь мысленных переходов на примере Runway — от Feature Label до Thesis. Урок: как перестать видеть список endpoints и начать видеть продукт."><meta property="og:type" content="article"><meta property="og:image" content="/aishkadev-site/og-default.png"><meta property="og:site_name" content="AI for Devs"><meta property="article:published_time" content="2026-06-25T00:00:00.000Z"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="От endpoint к продукту: как читать API с продуктовой оптикой — AI for Devs"><meta name="twitter:description" content="Восемь мысленных переходов на примере Runway — от Feature Label до Thesis. Урок: как перестать видеть список endpoints и начать видеть продукт."><!-- Canonical --><link rel="canonical" href="https://jefo.github.io/aishkadev-site/articles/runway-not-a-generator/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/aishkadev-site/_astro/_slug_.CYOKJ8v6.css"></head> <body class="min-h-screen"> <header class="relative z-10 border-b border-rule-subtle bg-bg-base/80 backdrop-blur-sm"> <nav class="mx-auto flex max-w-[1100px] items-center justify-between px-12 py-4"> <div class="flex items-center gap-6"> <a href="/" class="font-display text-sm font-semibold tracking-tight text-text-primary hover:text-accent transition-colors">
+AI for Devs
+</a> <span class="text-rule">/</span> <a href="/transform" class="font-mono text-xs text-accent"> Transform </a> </div> <div class="flex items-center gap-6 text-sm text-text-tertiary"> <span class="font-mono text-xs text-text-dim">runway</span> <span class="text-text-dim text-xs"> Jun 25, 2026 </span> </div> </nav> </header> <main class="relative z-10 mx-auto max-w-[1100px] px-12 py-24"> <article class="max-w-[68ch]"> <div class="border-l-2 border-accent pl-6 mb-12"> <p class="font-mono text-xs text-accent mb-2 uppercase tracking-[0.15em]">Transform</p> <h1 class="font-display font-extrabold text-text-primary leading-none text-3xl"> От endpoint к продукту: как читать API с продуктовой оптикой </h1> <p class="mt-4 text-text-secondary leading-relaxed">Восемь мысленных переходов на примере Runway — от Feature Label до Thesis. Урок: как перестать видеть список endpoints и начать видеть продукт.</p> </div> <div class="prose-a:text-accent space-y-6 text-text-secondary leading-relaxed
+          [&_h2]:font-display [&_h2]:text-text-primary [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:normal-case [&_h2]:mt-12 [&_h2]:mb-4
+          [&_h3]:font-display [&_h3]:text-text-primary [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:normal-case [&_h3]:mt-8 [&_h3]:mb-3
+          [&_p]:text-text-secondary [&_p]:leading-relaxed
+          [&_ul]:space-y-2 [&_ul]:pl-0 [&_ul]:list-none
+          [&_ol]:space-y-2
+          [&_li]:flex [&_li]:items-start [&_li]:gap-3
+          [&_li::before]:content-['→'] [&_li::before]:font-display [&_li::before]:text-accent [&_li::before]:shrink-0
+          [&_code]:font-mono [&_code]:text-sm [&_code]:bg-bg-elevated [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded
+          [&_pre]:bg-bg-deep [&_pre]:border [&_pre]:border-rule [&_pre]:rounded-md [&_pre]:p-4 [&_pre]:overflow-x-auto
+          [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-xs
+          [&_blockquote]:border-l-2 [&_blockquote]:border-rule-light [&_blockquote]:pl-4 [&_blockquote]:text-text-tertiary [&_blockquote]:italic
+          [&_strong]:text-text-primary [&_strong]:font-semibold
+          [&_a]:text-accent [&_a]:hover:text-accent-strong [&_a]:underline
+          [&_hr]:border-rule [&_hr]:my-8
+        ">  <p>Давай пройдём этот путь вместе. Я покажу восемь точек, в которых ты скорее всего застрянешь — и как из них выйти. Не будем торопиться. Каждая важна.</p>
+<p>Вот страница документации Runway API. На ней шесть методов:</p>
+<ul>
+<li><strong>Text-to-video</strong> — генерация видео по текстовому описанию</li>
+<li><strong>Image-to-video</strong> — анимация статичного изображения</li>
+<li><strong>Image generation</strong> — создание изображений с нуля</li>
+<li><strong>Video editing</strong> — изменение готового видео: замена объектов, стилизация</li>
+<li><strong>Lipsync</strong> — синхронизация движения губ с аудиодорожкой</li>
+<li><strong>Upscale</strong> — повышение разрешения</li>
+</ul>
+<p>Шесть строчек. Ты пробегаешь их глазами — и где-то между третьей и четвёртой в голове складывается вывод: «Это API для генерации видео».</p>
+<p>Вывод верный. Но слишком быстрый. И в этой скорости — проблема. Прямо сейчас, на этом месте, сработала ловушка.</p>
+<p>Теперь рассмотрим как в нее не попасться.</p>
+<hr/>
+<h2 id="переход-1-feature-label--capability">Переход 1: Feature label → Capability</h2>
+<p>Ты прочитал шесть названий — и мгновенно получил «ответ». Шесть имён сложились в одну фразу: генератор видео. Назвал технологию — закрыл вопрос.</p>
+<p>У нас, разработчиков, это срабатывает автоматически — на уровне рефлекса. Я называю это Feature Fixation. Label на методе описывает интерфейс, а не то, что ты реально можешь сделать. Смотрим: три метода на самом деле не три продукта. Это три точки входа в одну производственную возможность — media generation. Создавать визуальный контент без съёмки.</p>
+<p>Первый шаг — самый простой. Не останавливаемся на названиях. Группируем по тому, что происходит физически. Label — интерфейс. Capability — то, что у тебя в руках.</p>
+<hr/>
+<h2 id="переход-2-capability--workflow">Переход 2: Capability → Workflow</h2>
+<p>Capability говорит, что ты можешь произвести. Она не говорит, что ты можешь продать.</p>
+<p>Одиночный вызов API — не продукт. Сгенерировать одно видео — это демо, а не решение чьей-то задачи. Замечаешь разницу? Демо интересно тебе. Решение интересно покупателю.</p>
+<p>Посмотрим на понятие <em>workflow</em> — повторяемый процесс с входом и выходом. Для медиапроизводства это выглядит так:</p>
+<p>получить бриф
+→ сгенерировать ассет
+→ проверить результат
+→ сделать вариации под каналы
+→ отдать клиенту</p>
+<p>API здесь вызывается не один раз. Это конвейер. И вот важный сигнал — Runway в документации даёт не только модели, но и workflows и recipes: готовые цепочки операций. Сам производитель мыслит продукт как последовательность шагов. Берём пример.</p>
+<p>Вопрос теперь не «что умеет модель?», а «какой повторяемый процесс я могу из этого собрать?».</p>
+<hr/>
+<h2 id="переход-3-workflow--buyer">Переход 3: Workflow → Buyer</h2>
+<p>Это самый важный переход. И самый легко пропускаемый.</p>
+<p>Смотрим, что происходит: ты собрал работающий workflow — и хочешь запускать. Естественно. Но workflow без покупателя — хобби-проект. Он закрывает твой интерес к технологии. Не чью-то реальную задачу.</p>
+<p>В продуктовой разработке у каждой задачи есть поле «для кого». С API — то же самое, просто это поле ты заполняешь сам.</p>
+<p>Посмотрим, как Runway показывает use cases: <em>ad creative</em>, <em>product visualization</em>. Это не фичи. Это jobs — работы, которые люди нанимают продукт выполнить.</p>
+<p>Performance marketer нанимает Runway, потому что ему нужно 100 вариаций креатива — быстро и дёшево. E-commerce команда — потому что им нужно видео на каждую карточку товара, а традиционное production на 10 000 SKU стоит нереально.</p>
+<p>Замечаешь, как поменялся вопрос? Не «что делает API», а «чью работу он закрывает — и почему им это выгоднее прежнего способа?».</p>
+<hr/>
+<h2 id="переход-4-buyer--product-shape">Переход 4: Buyer → Product Shape</h2>
+<p>Ты нашёл buyer’ов. Performance marketer, e-commerce команда, content studio. Три разных человека, три разных работы.</p>
+<p>Первый импульс — делать для всех трёх. Останавливаемся. Это ловушка.</p>
+<p>Нельзя строить три продукта одновременно. Придётся выбрать.</p>
+<p>Что такое product shape? Это не процесс, который ты автоматизируешь. Это конкретный товар, который ты продаёшь. Не «автоматизация производства видео» — слишком размыто. А вот «загрузил бриф — получил 100 вариаций» — это уже товар. У него есть вход, выход и цена.</p>
+<p>Runway здесь не продукт. Это кухня с ингредиентами. Продукт — то, что ты из них собрал. Чувствуешь разницу?</p>
+<hr/>
+<h2 id="переход-5-product-shape--constraints">Переход 5: Product Shape → Constraints</h2>
+<p>Три кандидата есть. Теперь проверка: какие работают с учётом ограничений API.</p>
+<p>Важное различие, которое легко пропустить: <em>possible</em> — технически может, <em>viable</em> — работает прямо сейчас с ограничениями конкретного API.</p>
+<p>Смотрим на реальные constraints Runway Gen-4:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Параметр</th><th>Значение</th></tr></thead><tbody><tr><td>Длина клипа</td><td>5–10 секунд</td></tr><tr><td>Стабильность персонажа между кадрами</td><td>не гарантирована</td></tr><tr><td>Контроль над кадром</td><td>средний</td></tr><tr><td>Латентность</td><td>не real-time</td></tr><tr><td>Стоимость</td><td>per-generation</td></tr></tbody></table>
+<p>Применяем к трём кандидатам:</p>
+<ul>
+<li>Ad creative / performance marketer — 5–10 секунд достаточно, стабильность персонажа не критична. ✓</li>
+<li>Product visualization / e-commerce — для премиум-каталога маловато, для соцконтента окей. ∼</li>
+<li>Соцклипы / content studio — нужна стабильность персонажа между кадрами. ✗</li>
+</ul>
+<p>Ограничения — не баги. Это границы. Они не говорят тебе «API плохой». Они говорят: «вот такой формы продукт с ним работает».</p>
+<hr/>
+<h2 id="переход-6-constraints--economics">Переход 6: Constraints → Economics</h2>
+<p>Фабрика креативов прошла constraints. Достаточно? Нет.</p>
+<p>Продукт продаётся не потому что технология интересна. Он продаётся потому что меняет cost structure покупателя — соотношение цены, времени и результата.</p>
+<p>Давай посчитаем. Традиционный цикл одного креатива: студия → бриф → съёмка → монтаж → правки → итерации. Сотни долларов, дни.</p>
+<p>С API-продуктом: генерация за секунды, marginal cost почти ноль, 100 вариаций за пять минут. Разница — на порядок.</p>
+<p>Запоминаем правило: подставляем цифры. Сколько buyer тратит сейчас? Сколько будет с продуктом? Если разница меньше порядка — переключения не будет. 10% дешевле не меняют поведение. В 10 раз — меняют.</p>
+<hr/>
+<h2 id="переход-7-economics--thesis">Переход 7: Economics → Thesis</h2>
+<p>Последний шаг. Самый недооцениваемый.</p>
+<p>Демо показывает технологию: «смотри, видео из текста». Интересно на пять минут. Ни на один вопрос о продукте не отвечает.</p>
+<p>Thesis — это ставка. Одно предложение о том, во что ты веришь:</p>
+<blockquote>
+<p>«Performance marketer’ы готовы платить за сокращение цикла производства креативов в 10 раз.»</p>
+</blockquote>
+<p>Не «Runway крутой». Не «видео — будущее». Конкретный buyer. Конкретное изменение economics. Конкретная ставка.</p>
+<p>Если ставка верна — продукт имеет смысл. Если нет — никакой API не поможет. Потому что продукт строится вокруг thesis, а не вокруг технологии.</p>
+<hr/>
+<h2 id="итог">Итог</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>Feature Label</span></span>
+<span class="line"><span>    ↓  группируй endpoints в capabilities</span></span>
+<span class="line"><span>Capability</span></span>
+<span class="line"><span>    ↓  собирай повторяемый процесс</span></span>
+<span class="line"><span>Workflow</span></span>
+<span class="line"><span>    ↓  найди конкретного покупателя</span></span>
+<span class="line"><span>Buyer</span></span>
+<span class="line"><span>    ↓  выбери, что именно продаёшь</span></span>
+<span class="line"><span>Product Shape</span></span>
+<span class="line"><span>    ↓  проверь ограничения API</span></span>
+<span class="line"><span>Constraints</span></span>
+<span class="line"><span>    ↓  посчитай изменение cost structure</span></span>
+<span class="line"><span>Economics</span></span>
+<span class="line"><span>    ↓  сформулируй ставку</span></span>
+<span class="line"><span>Thesis</span></span></code></pre>
+<hr/>
+<p>А теперь — без меня. Берём любой API — OpenAI, Firecrawl, что угодно. Открываем документацию. И проходим по этим восьми точкам:</p>
+<p>Группируем методы в capabilities. Собираем workflow. Находим buyer’а. Определяем product shape. Проверяем constraints — что не проходит? Считаем economics — какой порядок? Формулируем thesis — во что мы ставим?</p>
+<p>Я не могу дать тебе ответ. У тебя другой контекст, другой buyer, другие constraints. Но я могу дать тебе вопросы.</p>
+<p>И если сейчас, глядя на список endpoints, ты видишь не методы, а возможности — урок прошёл.</p>  </div> </article> </main> <footer class="relative z-10 border-t border-rule-subtle mt-24"> <div class="mx-auto max-w-[1100px] px-12 py-8"> <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-text-dim font-mono"> <nav class="flex gap-4"> <a href="/discover" class="hover:text-text-secondary transition-colors">Discover</a> <a href="/transform" class="hover:text-text-secondary transition-colors">Transform</a> <a href="/build" class="hover:text-text-secondary transition-colors">Build</a> </nav> <span>AI for Devs · 2026</span> </div> </div> </footer> </body></html>
