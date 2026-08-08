@@ -148,11 +148,34 @@ NARRATIVE OPPORTUNITY (tension + evidence + claim + drama → title candidates)
 
 ---
 
+## Правило разрешения tensions: concrete over meta
+
+ICP tension никогда не закрывается через совет или мета-категорию («посмотри на API», «подумай о buyer»). Она закрывается **косвенно** — через конкретику продукта:
+
+> «Я сделал продукт для <buyer> и вот почему он БУДЕТ платить N $$$ в месяц.»
+
+Это и есть ответ на вопрос «что строить». Не «посмотри на API» — «вот продукт для конкретного человека, вот его боль, вот экономика.»
+
+**Весь discovery работает по этой модели.** Каждый ролик: конкретный buyer → конкретный продукт → конкретные цифры → конкретная economics. Никаких абстрактных фреймворков в hooks.
+
+**Запрещено:**
+- «Вот 5 API, на которых можно построить бизнес» — список, не продукт
+- «Научись видеть buyer за возможностями» — совет, не evidence
+- «Product thinking — это когда…» — определение, не демонстрация
+
+**Разрешено:**
+- «Я сделал продукт для performance marketer'а. Он платит $149/мес.» — продукт, buyer, цифра
+- «Ему нужно 50 креативов в неделю. Студия делает 5 за $500. Я делаю за $0.75.» — боль, альтернатива, экономика
+
+Правило: **show the product, don't explain the method.** Метод (product thinking) зритель выводит сам из последовательности конкретных примеров.
+
+---
+
 ## Матрица Product × Audience (Ad Creative Factory × Developer)
 
 | Product fact | ICP tension | Narrative opportunity |
 |---|---|---|
-| SaaS without AI model | Technology Anxiety | «Я построил SaaS без единой AI-модели» |
+| SaaS without AI model | Technology Anxiety | «Я сделал продукт для performance marketer'а. Вот почему он платит.» |
 | Runway API → buyer → workflow | Opportunity Blindness | «Я нашёл бизнес в API, которым пользуются все» |
 | API ≠ workflow | Commodity Anxiety | «API есть у всех. Продукта — ни у кого.» |
 | $0.75 → $500 | Economics | «Я продаю за $500 то, что AI делает за $0.75» |
